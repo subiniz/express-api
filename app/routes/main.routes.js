@@ -1,9 +1,10 @@
 module.exports = app => {
-    var router = require("express").Router();
-    const users = require("./../controllers/users.controller.js");
+    const express = require("express");
+    const router = express.Router();
 
-    // API #2 - GET all users list
-    router.get("/get-all", (users.getAll));
+    require('./user.routes.js')(app, router);
 
-    app.use("/api/users", router);
+    // require('./product.routes.js')(app, router);
+    // require('./settings.routes.js');
+
 }

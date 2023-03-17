@@ -1,14 +1,17 @@
-const User = require("./../models/user.model.js");
+const UserModel = require("./../models/user.model.js");
 
-exports.getAll = (req, res) => {
-    User.getAll((err, data) => {
-        if(err) {
-            res.status(500).send({
-                message:
-                    err.message || "Some issue occoured"
-            });
-        } else {
-            // res.send(data);
-        }
-    })
+// Get All Users
+const index = async (req, res) => {
+    try {
+        // console.log("We are in controller");
+        const users = await UserModel.findAll();
+        res.send(users);
+        // console.log(users);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+module.exports = {
+    index
 }
