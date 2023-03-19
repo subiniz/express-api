@@ -12,6 +12,29 @@ const index = async (req, res) => {
     }
 }
 
+// Post/Create new user
+const create = async (req, res) => {
+    try {
+        // console.log(req.body);
+        // const name = req.body.name;
+        // const semester = req.body.semester;
+        // const email = req.body.email;
+        const {name, semester, email} = req.body;
+        await UserModel.createUser(name, semester, email);
+        // console.log(result);
+        res.status(200).send("User successfully created");
+
+    } catch (err) {
+        console.log("ERROR :: ", err);
+        res.status(500).send("Server Error");
+    }
+}
+
+// Single User By ID
+// req.params
+// const { id } = req.params;
+
 module.exports = {
-    index
+    index,
+    create
 }
