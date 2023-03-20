@@ -9,7 +9,13 @@ module.exports = (app, router) => {
     router.post('/', userController.create); // http://localhost:8080/api/users -> POST
 
     // Get a single user by id
-    router.get('/:id',userController.show); // http://localhost:8080/api/users/1
+    router.get('/:id',userController.show); // http://localhost:8080/api/users/1 -> GET
+
+    // Update user by id
+    router.put('/:id', userController.update) // http://localhost:8080/api/users/1 -> PUT
+
+    // Delete user by id
+    // router.delete('/:id', userController.delete)
 
     app.use('/api/users', router);
 }

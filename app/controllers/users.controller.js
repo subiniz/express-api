@@ -33,8 +33,34 @@ const create = async (req, res) => {
 // Single User By ID
 // req.params
 // const { id } = req.params;
+// params = parameters
+const show = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const user = await UserModel.findById(id);
+        res.send(user);
+    } catch (error) {
+        console.log("ERROR :: ", error);
+        // res.status(500).send({ "error" : error.message });
+        res.status(500).send(error);
+    }
+}
+
+const update = async (req, res) => {
+    const { id } = req.params;
+    const { name, semester, email } = req.body;
+    try {
+        await UserModel.updateUser(id, name, semester, email);
+        res.send("User Successfully Updated");
+    } catch (error) {
+        console.log("ERROR :: ", error);
+        res.status(500).send(error);
+    }
+}
 
 module.exports = {
     index,
-    create
+    create,
+    show,
+    update
 }
